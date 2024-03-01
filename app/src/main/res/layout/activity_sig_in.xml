@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SigInActivity">
+
+    <android.widget.Button
+        android:id="@+id/btn_signIn"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="570dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_btn"
+        android:text="@string/common_signin_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintVertical_bias="0.753" />
+
+    <ImageView
+        android:id="@+id/secure"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rotation="180"
+        android:background="@drawable/long_grad" />
+
+    <TextView
+        android:id="@+id/SE"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:text="@string/se"
+        android:textColor="@color/white"
+        android:paddingVertical="100dp"
+        android:paddingHorizontal="25sp"
+        android:textAllCaps="true"
+        android:textSize="70sp"
+        android:fontFamily="@font/metropolissemibold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:text="@string/cure"
+        android:textColor="@color/white"
+        android:paddingVertical="155dp"
+        android:paddingHorizontal="50dp"
+        android:textAllCaps="true"
+        android:textSize="70sp"
+        android:fontFamily="@font/metropolissemibold"
+        />
+
+
+</RelativeLayout>
