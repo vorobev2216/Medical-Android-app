@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.secure.databinding.ActivityMainBinding
 import com.example.secure.databinding.ActivitySigInBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -18,11 +20,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import androidx.fragment.app.activityViewModels
 
 class SigInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private val viewModel: DataViewModel by viewModels()
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var binding: ActivitySigInBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +51,10 @@ class SigInActivity : AppCompatActivity() {
             signInWithGoogle()
         }
         authState()
+        val name = auth.currentUser?.displayName.toString()
+        viewModel.setUserName(name)
+        Log.d("RRR","Sign In Activity")
+        Log.d("RRR", viewModel.userName.value.toString())
     }
 
     private fun getClient(): GoogleSignInClient {
@@ -77,9 +86,23 @@ class SigInActivity : AppCompatActivity() {
 
     fun authState() {
         if (auth.currentUser != null) {
+            val username = auth.currentUser!!.displayName.toString()
             val i = Intent(this, MainActivity::class.java)
+            i.putExtra("un",username)
             startActivity(i)
         }
+    }
+
+
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("RRR","restart")
+        auth.signOut()
+//        if (auth.currentUser == null){
+//            Log.d("RRR","succses")
+//        }
+
     }
 
 }
