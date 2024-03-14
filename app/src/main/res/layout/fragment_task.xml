@@ -95,7 +95,7 @@
                     android:layout_height="match_parent" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/addDrug"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:layout_marginStart="280dp"

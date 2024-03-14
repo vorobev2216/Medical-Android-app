@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.EmailAuthCredential
 
 class DataViewModel: ViewModel() {
-
+    /////////// Google stats
     private val _userName = MutableLiveData<String>()
     val userName: LiveData<String> get() = _userName
 
@@ -35,5 +35,13 @@ class DataViewModel: ViewModel() {
     fun setUserPhoto(photo: String){
         _userPhoto.value = photo
     }
+
+    ///////////
+
+
+    /////////// Drug Data
+
+    private val _drugName = MutableLiveData<String>()
+    val drugName: LiveData<String> get() = _drugName
 
 }

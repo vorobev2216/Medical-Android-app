@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.setUserPhoto(photo)
         Log.d("RRR",viewModel.userPhoto.value.toString())
 
+
         binding.bottomNavigationView.setOnItemReselectedListener {
 
             when (it.itemId) {

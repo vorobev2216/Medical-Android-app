@@ -31,8 +31,6 @@ class TaskFragment : Fragment() {
 
         binding = FragmentTaskBinding.inflate(inflater, container, false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,10 +41,18 @@ class TaskFragment : Fragment() {
         val formattedDate = currentDate.format(formatter)
         binding.tvTaskFragDate.text = formattedDate
 
+
+        binding.addDrug.setOnClickListener {
+            AddDrugFragment().show(childFragmentManager,"AddDrug")
+        }
+
+
         viewModel.userName.observe(viewLifecycleOwner, Observer { name ->
             binding.tvTaskFragName.text = name
         })
         Glide.with(this).load(viewModel.userPhoto.value).into(binding.imageView).onLoadFailed(com.example.secure.R.drawable.img.toDrawable())
+
+
 
     }
 
