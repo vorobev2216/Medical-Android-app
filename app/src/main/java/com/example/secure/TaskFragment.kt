@@ -52,6 +52,9 @@ class TaskFragment : Fragment() {
         })
         Glide.with(this).load(viewModel.userPhoto.value).into(binding.imageView).onLoadFailed(com.example.secure.R.drawable.img.toDrawable())
 
+        viewModel.drugName.observe(viewLifecycleOwner, Observer {drugName ->
+            binding.tvTestVM.text = drugName
+        })
 
 
     }

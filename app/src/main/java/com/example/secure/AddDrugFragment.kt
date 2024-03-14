@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class AddDrugFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAddDrugBinding
-    private val viewModel: DataViewModel by activityViewModels()
+    val viewModel: DataViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +26,18 @@ class AddDrugFragment : BottomSheetDialogFragment() {
     ): View? {
         binding = FragmentAddDrugBinding.inflate(inflater,container,false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.addButton.setOnClickListener {
+            val drugName = binding.edDrugName.text.toString()
+            viewModel.setDrugName(drugName)
+            binding.edDrugName.setText("")
+            dismiss()
+        }
+
+
     }
 
 }

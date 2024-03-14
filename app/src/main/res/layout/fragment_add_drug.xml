@@ -26,6 +26,7 @@
         app:boxStrokeColor="@color/main_blue">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_drugName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/main_blue"
@@ -35,6 +36,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
     <android.widget.Button
+        android:id="@+id/addButton"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="30dp"

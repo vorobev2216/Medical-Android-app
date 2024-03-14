@@ -44,4 +44,8 @@ class DataViewModel: ViewModel() {
     private val _drugName = MutableLiveData<String>()
     val drugName: LiveData<String> get() = _drugName
 
+    fun setDrugName(drugName: String){
+        _drugName.value = drugName
+    }
+
 }
