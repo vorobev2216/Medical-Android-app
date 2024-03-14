@@ -23,8 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         fragmentChanger(TaskFragment())
 
-        val username = intent.getStringExtra("un").toString()
+        val username = intent.getStringExtra("username").toString()
+        val email = intent.getStringExtra("email").toString()
+        val number = intent.getStringExtra("number").toString()
+        val photo = intent.getStringExtra("photo").toString()
         viewModel.setUserName(username)
+        viewModel.setUserEmail(email)
+        viewModel.setUserNumber(number)
+        viewModel.setUserPhoto(photo)
+        Log.d("RRR",viewModel.userPhoto.value.toString())
 
         binding.bottomNavigationView.setOnItemReselectedListener {
 

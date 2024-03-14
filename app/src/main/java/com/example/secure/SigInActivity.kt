@@ -53,7 +53,7 @@ class SigInActivity : AppCompatActivity() {
         authState()
         val name = auth.currentUser?.displayName.toString()
         viewModel.setUserName(name)
-        Log.d("RRR","Sign In Activity")
+        Log.d("RRR", "Sign In Activity")
         Log.d("RRR", viewModel.userName.value.toString())
     }
 
@@ -86,18 +86,19 @@ class SigInActivity : AppCompatActivity() {
 
     fun authState() {
         if (auth.currentUser != null) {
-            val username = auth.currentUser!!.displayName.toString()
             val i = Intent(this, MainActivity::class.java)
-            i.putExtra("un",username)
+            i.putExtra("username", auth.currentUser!!.displayName.toString())
+            i.putExtra("email", auth.currentUser?.email.toString())
+            i.putExtra("number",auth.currentUser?.phoneNumber.toString())
+            i.putExtra("photo",auth.currentUser?.photoUrl).toString()
             startActivity(i)
         }
     }
 
 
-
     override fun onRestart() {
         super.onRestart()
-        Log.d("RRR","restart")
+        Log.d("RRR", "restart")
         auth.signOut()
 //        if (auth.currentUser == null){
 //            Log.d("RRR","succses")
