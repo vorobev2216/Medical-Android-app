@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.secure.databinding.FragmentTaskBinding
 import java.text.SimpleDateFormat
@@ -36,6 +37,7 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val currentDate = LocalDate.now()
         val formatter = DateTimeFormatter.ofPattern("dd MMMM, EEEE", Locale("ru"))
         val formattedDate = currentDate.format(formatter)
@@ -43,7 +45,7 @@ class TaskFragment : Fragment() {
 
 
         binding.addDrug.setOnClickListener {
-            AddDrugFragment().show(childFragmentManager,"AddDrug")
+            AddDrugFragment(null).show(childFragmentManager,"AddDrug")
         }
 
 
@@ -52,11 +54,18 @@ class TaskFragment : Fragment() {
         })
         Glide.with(this).load(viewModel.userPhoto.value).into(binding.imageView).onLoadFailed(com.example.secure.R.drawable.img.toDrawable())
 
-        viewModel.drugName.observe(viewLifecycleOwner, Observer {drugName ->
-            binding.tvTestVM.text = drugName
-        })
+        setRecyclerView()
 
 
+    }
+
+    private fun setRecyclerView() {
+        viewModel.drugItems.observe(viewLifecycleOwner){
+            binding.rvDrug.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = DrugItemAdapter(it!!)
+            }
+        }
     }
 
 
