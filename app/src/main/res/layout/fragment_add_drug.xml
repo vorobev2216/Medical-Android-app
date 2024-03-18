@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".AddDrugFragment">
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/tv_add_drug"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Добавьте препарат"
+        android:layout_marginHorizontal="20dp"
         android:fontFamily="@font/metropolissemibold"
+        android:text="Добавьте препарат"
         android:textColor="@color/main_blue"
-        android:textStyle="bold"
         android:textSize="30sp"
-        android:layout_marginHorizontal="20dp"/>
+        android:textStyle="bold" />
+
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
         android:hint="Название препарата"
         app:boxStrokeColor="@color/main_blue">
 
@@ -39,8 +41,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
         android:hint="Частота приема"
         app:boxStrokeColor="@color/main_blue">
 
@@ -54,20 +56,31 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <android.widget.Button
-        android:id="@+id/addButton"
-        android:layout_marginTop="20dp"
+        android:id="@+id/setTimer"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/main_blue"
-        android:layout_marginHorizontal="20dp"
         android:layout_gravity="center"
-        android:text="Добвавить"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
         android:fontFamily="@font/metropolissemibold"
-        android:textStyle="bold"
-        android:textColor="@color/white"
+        android:text="Выберете время"
+        android:textColor="@color/main_blue"
+        android:textStyle="bold" />
+
+    <android.widget.Button
+        android:id="@+id/addButton"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        />
+        android:background="@color/main_blue"
+        android:fontFamily="@font/metropolissemibold"
+        android:text="Добвавить"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 
-    
 </LinearLayout>

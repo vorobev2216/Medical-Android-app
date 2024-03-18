@@ -33,12 +33,12 @@ class SigInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySigInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        val i = Intent(this, MainActivity::class.java)
-////        i.putExtra("username", auth.currentUser!!.displayName.toString())
-////        i.putExtra("email", auth.currentUser?.email.toString())
-////        i.putExtra("number",auth.currentUser?.phoneNumber.toString())
-////        i.putExtra("photo",auth.currentUser?.photoUrl).toString()
-//        startActivity(i)
+        val i = Intent(this, MainActivity::class.java)
+//        i.putExtra("username", auth.currentUser!!.displayName.toString())
+//        i.putExtra("email", auth.currentUser?.email.toString())
+//        i.putExtra("number",auth.currentUser?.phoneNumber.toString())
+//        i.putExtra("photo",auth.currentUser?.photoUrl).toString()
+        startActivity(i)
         auth = Firebase.auth
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
@@ -85,7 +85,6 @@ class SigInActivity : AppCompatActivity() {
                 authState()
             } else {
                 Toast.makeText(this, "Errore!", Toast.LENGTH_SHORT).show()
-
             }
         }
     }

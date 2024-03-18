@@ -19,7 +19,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class TaskFragment : Fragment() {
+class TaskFragment : Fragment(), DrugItemClickListener {
     private lateinit var binding: FragmentTaskBinding
     private val viewModel: DataViewModel by activityViewModels()
 
@@ -49,6 +49,7 @@ class TaskFragment : Fragment() {
         }
 
 
+
         viewModel.userName.observe(viewLifecycleOwner, Observer { name ->
             binding.tvTaskFragName.text = name
         })
@@ -63,9 +64,17 @@ class TaskFragment : Fragment() {
         viewModel.drugItems.observe(viewLifecycleOwner){
             binding.rvDrug.apply {
                 layoutManager = LinearLayoutManager(activity)
-                adapter = DrugItemAdapter(it!!)
+                adapter = DrugItemAdapter(it!!,this@TaskFragment)
             }
         }
+    }
+
+    override fun editDrugItem(drugItem: DrugItem) {
+        AddDrugFragment(drugItem).show(childFragmentManager,"AddDrug")
+    }
+
+    override fun completeDrugItem(drugItem: DrugItem) {
+        viewModel.setCompleted(drugItem)
     }
 
 

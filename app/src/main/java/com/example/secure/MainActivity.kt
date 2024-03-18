@@ -34,14 +34,14 @@ class MainActivity : AppCompatActivity() {
         Log.d("RRR",viewModel.userPhoto.value.toString())
 
 
-        binding.bottomNavigationView.setOnItemReselectedListener {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener{
 
             when (it.itemId) {
                 R.id.Profile -> fragmentChanger(ProfileFragment())
                 R.id.Task -> fragmentChanger(TaskFragment())
                 R.id.Chat -> fragmentChanger(AiChatFragment())
             }
-
+            true
         }
 
     }

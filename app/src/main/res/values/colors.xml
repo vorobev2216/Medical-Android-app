@@ -5,4 +5,5 @@
     <color name="main_blue">#313181</color>
     <color name="dark_blue">#FF0F3CAE</color>
     <color name="blue">#FF0F3CAE</color>
+    <color name="grey_checked">#99010101</color>
 </resources>
