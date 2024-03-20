@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".QuestionsFragment"
+    android:id="@+id/QuestionsFrame"
+    android:background="@color/white">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="#40FEFEFE">
+
+            <TextView
+                android:id="@+id/question_text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:layout_marginStart="17dp"
+                android:text="Вопрос"
+                android:textColor="@color/main_blue"
+                android:fontFamily="@font/metropolissemibold"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group1"
+                android:layout_width="match_parent"
+                android:layout_height="196dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="53dp">
+
+                <RadioButton
+                    android:id="@+id/answer_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Не было"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/answer_12"
+                    android:text="Слабая"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/answer_13"
+                    android:text="Выраженная"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/answer_14"
+                    android:layout_width="match_parent"
+                    android:text="Крайне выраженная"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+            </RadioGroup>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/white">
+
+            <TextView
+                android:id="@+id/question_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:layout_marginStart="17dp"
+                android:text="Вопрос"
+                android:textColor="@color/main_blue"
+                android:fontFamily="@font/metropolissemibold"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group2"
+                android:layout_width="match_parent"
+                android:layout_height="196dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/white"
+                android:layout_marginTop="53dp">
+
+                <RadioButton
+                    android:id="@+id/answer_21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Не было"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/answer_22"
+                    android:text="Слабая"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/answer_23"
+                    android:text="Выраженная"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/answer_24"
+                    android:layout_width="match_parent"
+                    android:text="Крайне выраженная"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+            </RadioGroup>
+        </androidx.cardview.widget.CardView>
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            app:cardCornerRadius="20dp"-->
+<!--            app:cardBackgroundColor="#40FEFEFE">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/question_text1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="21dp"-->
+<!--                android:layout_marginStart="17dp"-->
+<!--                android:text="Вопрос"-->
+<!--                android:textColor="@color/main_blue"-->
+<!--                android:fontFamily="@font/metropolissemibold"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <RadioGroup-->
+<!--                android:id="@+id/radio_group1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="196dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginTop="53dp">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_11"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Не было"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_12"-->
+<!--                    android:text="Слабая"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_13"-->
+<!--                    android:text="Выраженная"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/answer_14"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:text="Крайне выраженная"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/metropolissemibold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--            </RadioGroup>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+
+
+
+
+
+
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Следующий"/>
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+</FrameLayout>

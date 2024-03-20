@@ -54,9 +54,9 @@
         android:id="@+id/iv_bell"
         android:layout_width="29dp"
         android:layout_height="25sp"
-        android:layout_marginStart="253dp"
+        android:layout_marginStart="251dp"
         android:layout_marginTop="55dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="27dp"
         app:srcCompat="@drawable/baseline_add_alert_24" />
 
     <TextView

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TaskFragment"
-
+    android:id="@+id/TaskFrame"
+    android:background="@color/white"
     >
 
 
@@ -162,13 +163,13 @@
                     android:textStyle="bold" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/taskButton"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="280dp"
                     android:backgroundTint="#F9F9FF"
-                    android:tint="@color/main_blue"
+                    app:tint="@color/main_blue"
                     android:background="@drawable/rounded_bg_iv"
                     android:src="@drawable/add_chart_24"
                     />

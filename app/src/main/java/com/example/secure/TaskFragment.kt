@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -45,7 +46,7 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 
 
         binding.addDrug.setOnClickListener {
-            AddDrugFragment(null).show(childFragmentManager,"AddDrug")
+            AddDrugFragment(null).show(childFragmentManager, "AddDrug")
         }
 
 
@@ -53,29 +54,47 @@ class TaskFragment : Fragment(), DrugItemClickListener {
         viewModel.userName.observe(viewLifecycleOwner, Observer { name ->
             binding.tvTaskFragName.text = name
         })
-        Glide.with(this).load(viewModel.userPhoto.value).into(binding.imageView).onLoadFailed(com.example.secure.R.drawable.img.toDrawable())
+        Glide.with(this).load(viewModel.userPhoto.value).into(binding.imageView)
+            .onLoadFailed(com.example.secure.R.drawable.img.toDrawable())
 
         setRecyclerView()
 
+        binding.taskButton.setOnClickListener {
+            parentFragmentManager.commit {
 
-    }
+                    replace(R.id.TaskFrame, QuestionsFragment())
 
-    private fun setRecyclerView() {
-        viewModel.drugItems.observe(viewLifecycleOwner){
-            binding.rvDrug.apply {
-                layoutManager = LinearLayoutManager(activity)
-                adapter = DrugItemAdapter(it!!,this@TaskFragment)
+                    addToBackStack(null)
             }
         }
-    }
 
-    override fun editDrugItem(drugItem: DrugItem) {
-        AddDrugFragment(drugItem).show(childFragmentManager,"AddDrug")
-    }
 
-    override fun completeDrugItem(drugItem: DrugItem) {
-        viewModel.setCompleted(drugItem)
+
+}
+
+private fun setRecyclerView() {
+    viewModel.drugItems.observe(viewLifecycleOwner) {
+        binding.rvDrug.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = DrugItemAdapter(it!!, this@TaskFragment)
+        }
     }
+}
+
+override fun editDrugItem(drugItem: DrugItem) {
+    AddDrugFragment(drugItem).show(childFragmentManager, "AddDrug")
+}
+
+override fun completeDrugItem(drugItem: DrugItem) {
+    viewModel.setCompleted(drugItem)
+}
+
+private fun fragmentChanger(fragment: Fragment) {
+    val fragmentManager = childFragmentManager
+    val fragmentTransaction = fragmentManager.beginTransaction()
+    fragmentTransaction.replace(R.id.TaskFrame, fragment)
+        .commit()
+}
 
 
 }
