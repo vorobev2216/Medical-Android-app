@@ -37,7 +37,7 @@ class DataViewModel() : ViewModel() {
         _userPhoto.value = photo
     }
 
-    ///////////
+    /////////// Google stats
 
 
     /////////// Drug Data
@@ -78,6 +78,19 @@ class DataViewModel() : ViewModel() {
         }
         drugItems.postValue(list)
     }
+
+    /////////// Drug Data
+
+    /////////// Health Rating Data
+
+    private val _ratingHealth = MutableLiveData<Int>()
+    val ratingHealth: LiveData<Int> get() = _ratingHealth
+
+    fun setRating(rating: Int){
+        _ratingHealth.value = rating
+    }
+
+    /////////// Health Rating Data
 
 
 }
