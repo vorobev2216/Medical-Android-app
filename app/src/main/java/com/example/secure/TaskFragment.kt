@@ -1,11 +1,16 @@
 package com.example.secure
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -13,17 +18,22 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.secure.databinding.FragmentTaskBinding
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Date
+import java.util.Calendar
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 
 class TaskFragment : Fragment(), DrugItemClickListener {
     private lateinit var binding: FragmentTaskBinding
     private val viewModel: DataViewModel by activityViewModels()
-
+    private val sharedPrefs by lazy {
+        requireActivity().getSharedPreferences("button", AppCompatActivity.MODE_PRIVATE)
+    }
+    lateinit var alarmIntent: PendingIntent
+    lateinit var countDownTimer: CountDownTimer
+    var endTime: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,42 +69,109 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 
         setRecyclerView()
 
-        binding.taskButton.setOnClickListener {
-            parentFragmentManager.commit {
+        val nextDay = getNextDay()
+        val midnight = nextDay.timeInMillis
 
-                    replace(R.id.TaskFrame, QuestionsFragment())
+        val savedMidnight = sharedPrefs.getLong("midnight", 0)
+        endTime = savedMidnight - System.currentTimeMillis()
 
-                    addToBackStack(null)
+        countDownTimer = object : CountDownTimer(endTime, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
+                val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
+                val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
+                binding.countDown.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+            }
+            override fun onFinish() {
+                binding.taskButton.isEnabled = true
+                binding.countDown.text = "Button is now active"
             }
         }
 
+        if (savedMidnight > System.currentTimeMillis()) {
+            binding.taskButton.isEnabled = false
+            countDownTimer.start()
+        } else {
+            binding.taskButton.isEnabled = true
+            binding.countDown.text = "Button is now active"
+        }
 
 
-}
+        binding.taskButton.setOnClickListener {
+            parentFragmentManager.commit {
+                replace(R.id.TaskFrame, QuestionsFragment())
+                addToBackStack(null)
+            }
 
-private fun setRecyclerView() {
-    viewModel.drugItems.observe(viewLifecycleOwner) {
-        binding.rvDrug.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = DrugItemAdapter(it!!, this@TaskFragment)
+            it.isEnabled = false
+            val nextDayMidnightCalc: Calendar = getNextDay()
+            sharedPrefs.edit().putLong("midnight", nextDayMidnightCalc.timeInMillis).apply()
+
+            setMidnightAlarm()
+            val midnight = getNextDay().timeInMillis
+            sharedPrefs.edit().putLong("midnight", midnight).apply()
+            binding.taskButton.isEnabled = false
+            endTime = midnight - System.currentTimeMillis()
+            countDownTimer = object : CountDownTimer(endTime, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
+                    val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
+                    val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
+                    binding.countDown.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                }
+                override fun onFinish() {
+                    binding.taskButton.isEnabled = true
+                    binding.countDown.text = "Button is now active"
+                }
+            }.start()
+
+
+        }
+
+
+    }
+
+    private fun setMidnightAlarm() {
+        val nextDay = getNextDay()
+        val midnight = nextDay.timeInMillis
+
+
+
+
+        val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alarmIntent = Intent(requireActivity(),MidnightReceiver::class.java).let {
+            intent ->
+            PendingIntent.getBroadcast(requireActivity(),0,intent,
+                PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        }
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,midnight,alarmIntent)
+    }
+
+    private fun getNextDay(): Calendar {
+        return Calendar.getInstance().apply {
+            add(Calendar.DATE, 1)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
         }
     }
-}
 
-override fun editDrugItem(drugItem: DrugItem) {
-    AddDrugFragment(drugItem).show(childFragmentManager, "AddDrug")
-}
+    private fun setRecyclerView() {
+        viewModel.drugItems.observe(viewLifecycleOwner) {
+            binding.rvDrug.apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = DrugItemAdapter(it!!, this@TaskFragment)
+            }
+        }
+    }
 
-override fun completeDrugItem(drugItem: DrugItem) {
-    viewModel.setCompleted(drugItem)
-}
+    override fun editDrugItem(drugItem: DrugItem) {
+        AddDrugFragment(drugItem).show(childFragmentManager, "AddDrug")
+    }
 
-private fun fragmentChanger(fragment: Fragment) {
-    val fragmentManager = childFragmentManager
-    val fragmentTransaction = fragmentManager.beginTransaction()
-    fragmentTransaction.replace(R.id.TaskFrame, fragment)
-        .commit()
-}
+    override fun completeDrugItem(drugItem: DrugItem) {
+        viewModel.setCompleted(drugItem)
+    }
 
 
 }
