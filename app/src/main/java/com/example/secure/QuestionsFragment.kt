@@ -1,6 +1,8 @@
 package com.example.secure
 
 import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -44,15 +46,12 @@ class QuestionsFragment : Fragment() {
 
     private fun alertWindow() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setView(R.layout.dialog_callambulance).setPositiveButton("call") {_,_ ->
+        builder.setView(layoutInflater.inflate(R.layout.dialog_callambulance, null))
 
-        }
-            .setNegativeButton("no call"){ _,_ ->
-
-            }
 
         val dialog = builder.create()
         dialog.show()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun fillQuestions() {
