@@ -1,9 +1,11 @@
 package com.example.secure
 
 import android.app.AlarmManager
+import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -11,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -31,7 +34,7 @@ class TaskFragment : Fragment(), DrugItemClickListener {
     private val sharedPrefs by lazy {
         requireActivity().getSharedPreferences("button", AppCompatActivity.MODE_PRIVATE)
     }
-    lateinit var alarmIntent: PendingIntent
+
     lateinit var countDownTimer: CountDownTimer
     var endTime: Long = 0
 
@@ -80,11 +83,14 @@ class TaskFragment : Fragment(), DrugItemClickListener {
                 val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
                 val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
                 val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
-                binding.countDown.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                binding.tvQuestions.text = "Новый опрос через: ${String.format("%02d:%02d:%02d", hours, minutes, seconds)}"
+                binding.taskButton.setColorFilter(ContextCompat.getColor(context!!, R.color.grey_checked))
             }
             override fun onFinish() {
                 binding.taskButton.isEnabled = true
-                binding.countDown.text = "Button is now active"
+                binding.tvQuestions.text = "Пройдите ежедневный опрос"
+                binding.taskButton.setColorFilter(ContextCompat.getColor(context!!, R.color.main_blue))
+
             }
         }
 
@@ -93,7 +99,7 @@ class TaskFragment : Fragment(), DrugItemClickListener {
             countDownTimer.start()
         } else {
             binding.taskButton.isEnabled = true
-            binding.countDown.text = "Button is now active"
+            binding.tvQuestions.text = "Пройдите ежедневный опрос"
         }
 
 
@@ -117,13 +123,18 @@ class TaskFragment : Fragment(), DrugItemClickListener {
                     val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
                     val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
                     val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
-                    binding.countDown.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+
+                    binding.tvQuestions.setText("Следующий опрос через${String.format("%02d:%02d:%02d", hours, minutes, seconds)}")
                 }
                 override fun onFinish() {
                     binding.taskButton.isEnabled = true
-                    binding.countDown.text = "Button is now active"
+
                 }
             }.start()
+
+            if(binding.taskButton.isEnabled){
+
+            }
 
 
         }

@@ -47,8 +47,6 @@ class QuestionsFragment : Fragment() {
     private fun alertWindow() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         builder.setView(layoutInflater.inflate(R.layout.dialog_callambulance, null))
-
-
         val dialog = builder.create()
         dialog.show()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

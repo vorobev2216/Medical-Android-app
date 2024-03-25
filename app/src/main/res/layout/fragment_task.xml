@@ -151,7 +151,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView">
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/tv_questions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -174,11 +174,6 @@
                     android:src="@drawable/add_chart_24"
                     />
 
-                <TextView
-                    android:id="@+id/countDown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
