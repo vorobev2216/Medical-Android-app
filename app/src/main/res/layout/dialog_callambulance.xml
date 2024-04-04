@@ -9,6 +9,7 @@
 
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="280dp"
         android:layout_height="300dp"
         android:fontFamily="@font/metropolissemibold"

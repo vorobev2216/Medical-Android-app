@@ -31,7 +31,7 @@
                 android:id="@+id/question_text1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginStart="17dp"
                 android:text="Вопрос"
                 android:textColor="@color/main_blue"
@@ -751,7 +751,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Следующий"/>
+            android:fontFamily="@font/metropolissemibold"
+            android:textSize="16dp"
+            android:text="Заночить опрос"/>
 
     </LinearLayout>
 

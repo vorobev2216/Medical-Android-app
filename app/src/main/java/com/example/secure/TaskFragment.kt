@@ -72,36 +72,41 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 
         setRecyclerView()
 
-        val nextDay = getNextDay()
-        val midnight = nextDay.timeInMillis
-
-        val savedMidnight = sharedPrefs.getLong("midnight", 0)
-        endTime = savedMidnight - System.currentTimeMillis()
-
-        countDownTimer = object : CountDownTimer(endTime, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
-                val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
-                val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
-                binding.tvQuestions.text = "Новый опрос через: ${String.format("%02d:%02d:%02d", hours, minutes, seconds)}"
-                binding.taskButton.setColorFilter(ContextCompat.getColor(context!!, R.color.grey_checked))
-            }
-            override fun onFinish() {
-                binding.taskButton.isEnabled = true
-                binding.tvQuestions.text = "Пройдите ежедневный опрос"
-                binding.taskButton.setColorFilter(ContextCompat.getColor(context!!, R.color.main_blue))
-
+//        val nextDay = getNextDay()
+//        val midnight = nextDay.timeInMillis
+//
+//        val savedMidnight = sharedPrefs.getLong("midnight", 0)
+//        endTime = savedMidnight - System.currentTimeMillis()
+//
+//        countDownTimer = object : CountDownTimer(endTime, 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
+//                val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
+//                val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
+//                binding.tvQuestions.text = "Новый опрос через: ${String.format("%02d:%02d:%02d", hours, minutes, seconds)}"
+//                binding.taskButton.setColorFilter(ContextCompat.getColor(context!!, R.color.grey_checked))
+//            }
+//            override fun onFinish() {
+//                binding.taskButton.isEnabled = true
+//                binding.tvQuestions.text = "Пройдите ежедневный опрос"
+//                binding.taskButton.setColorFilter(ContextCompat.getColor(context!!, R.color.main_blue))
+//
+//            }
+//        }
+//
+//        if (savedMidnight > System.currentTimeMillis()) {
+//            binding.taskButton.isEnabled = false
+//            countDownTimer.start()
+//        } else {
+//            binding.taskButton.isEnabled = true
+//            binding.tvQuestions.text = "Пройдите ежедневный опрос"
+//        }
+        binding.btnSimphtome.setOnClickListener{
+            parentFragmentManager.commit {
+                replace(R.id.TaskFrame, QuestionsFragment())
+                addToBackStack(null)
             }
         }
-
-        if (savedMidnight > System.currentTimeMillis()) {
-            binding.taskButton.isEnabled = false
-            countDownTimer.start()
-        } else {
-            binding.taskButton.isEnabled = true
-            binding.tvQuestions.text = "Пройдите ежедневный опрос"
-        }
-
 
         binding.taskButton.setOnClickListener {
             parentFragmentManager.commit {
@@ -109,32 +114,32 @@ class TaskFragment : Fragment(), DrugItemClickListener {
                 addToBackStack(null)
             }
 
-            it.isEnabled = false
-            val nextDayMidnightCalc: Calendar = getNextDay()
-            sharedPrefs.edit().putLong("midnight", nextDayMidnightCalc.timeInMillis).apply()
+//            it.isEnabled = false
+//            val nextDayMidnightCalc: Calendar = getNextDay()
+//            sharedPrefs.edit().putLong("midnight", nextDayMidnightCalc.timeInMillis).apply()
+//            val savedMidnight = sharedPrefs.getLong("midnight", 0)
+//            endTime = savedMidnight - System.currentTimeMillis()
+//            setMidnightAlarm()
+//            val midnight = getNextDay().timeInMillis
+//            sharedPrefs.edit().putLong("midnight", midnight).apply()
+//            binding.taskButton.isEnabled = false
+//            endTime = midnight - System.currentTimeMillis()
+//            countDownTimer = object : CountDownTimer(endTime, 1000) {
+//                override fun onTick(millisUntilFinished: Long) {
+//                    val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
+//                    val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
+//                    val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
+//
+//                    binding.tvQuestions.setText("Следующий опрос через${String.format("%02d:%02d:%02d", hours, minutes, seconds)}")
+//                }
+//                override fun onFinish() {
+//                    binding.taskButton.isEnabled = true
+//
+//                }
+//
+//            }.start()
 
-            setMidnightAlarm()
-            val midnight = getNextDay().timeInMillis
-            sharedPrefs.edit().putLong("midnight", midnight).apply()
-            binding.taskButton.isEnabled = false
-            endTime = midnight - System.currentTimeMillis()
-            countDownTimer = object : CountDownTimer(endTime, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
-                    val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60
-                    val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60
 
-                    binding.tvQuestions.setText("Следующий опрос через${String.format("%02d:%02d:%02d", hours, minutes, seconds)}")
-                }
-                override fun onFinish() {
-                    binding.taskButton.isEnabled = true
-
-                }
-            }.start()
-
-            if(binding.taskButton.isEnabled){
-
-            }
 
 
         }

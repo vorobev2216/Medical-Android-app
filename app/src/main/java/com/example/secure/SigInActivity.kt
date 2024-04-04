@@ -1,5 +1,6 @@
 package com.example.secure
 
+import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,7 +23,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import androidx.fragment.app.activityViewModels
 
-class SigInActivity : AppCompatActivity() {
+
+class SigInActivity : AppCompatActivity(){
     private lateinit var auth: FirebaseAuth
     private val viewModel: DataViewModel by viewModels()
     private lateinit var launcher: ActivityResultLauncher<Intent>
@@ -39,6 +41,7 @@ class SigInActivity : AppCompatActivity() {
 //        i.putExtra("number",auth.currentUser?.phoneNumber.toString())
 //        i.putExtra("photo",auth.currentUser?.photoUrl).toString()
         startActivity(i)
+
         auth = Firebase.auth
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)

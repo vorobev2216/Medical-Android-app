@@ -1,18 +1,28 @@
 package com.example.secure
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
+import android.text.TextUtils.replace
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
+import com.example.secure.databinding.DialogCallambulanceBinding
 import com.example.secure.databinding.FragmentQuestionsBinding
 
 
@@ -38,18 +48,108 @@ class QuestionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fillQuestions()
         binding.endBtn.setOnClickListener {
-            calculateRating()
-            if (viewModel.ratingHealth.value!! < 50)
-                alertWindow()
+            if (checkQuiz()) {
+                calculateRating()
+                if (viewModel.ratingHealth.value!! < 50) {
+                    createPhoneDialog()
+
+                } else{
+                    Toast.makeText(context,"Спасибо за ответ! Увидимся завтра!",Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.commit {
+                        replace(R.id.QuestionsFrame, TaskFragment())
+                    }
+
+
+                }
+
+            }
         }
+
     }
 
-    private fun alertWindow() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setView(layoutInflater.inflate(R.layout.dialog_callambulance, null))
+    private fun createPhoneDialog() {
+        val alertBinding = DialogCallambulanceBinding.inflate(
+            LayoutInflater.from(context),
+            null,
+            false
+        )
+
+        val builder = AlertDialog.Builder(context).apply {
+            setView(alertBinding.root)
+        }
+
         val dialog = builder.create()
         dialog.show()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        alertBinding.button.setOnClickListener {
+            val phoneIntent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:${900}")
+            }
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(android.Manifest.permission.CALL_PHONE),
+                    1
+                )
+            } else {
+                startActivity(phoneIntent)
+                parentFragmentManager.commit {
+                    replace(R.id.QuestionsFrame, TaskFragment())
+                }
+                dialog.dismiss()
+            }
+        }
+        alertBinding.button2.setOnClickListener {
+            dialog.dismiss()
+            parentFragmentManager.commit {
+                replace(R.id.QuestionsFrame, TaskFragment())
+            }
+
+        }
+
+    }
+
+    private fun checkQuiz(): Boolean {
+        val radioGroup: ArrayList<RadioGroup> = arrayListOf(
+            binding.radioGroup1,
+            binding.radioGroup2,
+            binding.radioGroup3,
+            binding.radioGroup4,
+            binding.radioGroup5,
+            binding.radioGroup6,
+            binding.radioGroup7,
+            binding.radioGroup8,
+            binding.radioGroup9,
+            binding.radioGroup10
+        )
+        for (rg in radioGroup) {
+            if (rg.checkedRadioButtonId == -1) {
+                Toast.makeText(context, "Ответьте на все вопросы!", Toast.LENGTH_SHORT).show()
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun alertWindow() {
+
+        val alertBinding = DialogCallambulanceBinding.inflate(LayoutInflater.from(context))
+
+        val builder = AlertDialog.Builder(context).apply {
+
+            setView(alertBinding.root)
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
     }
 
     private fun fillQuestions() {
@@ -68,19 +168,19 @@ class QuestionsFragment : Fragment() {
         )
 
         val questions: ArrayList<String> = arrayListOf(
-            "da",
-            "net",
-            "mb",
-            "fff",
-            "qed",
-            "mmm",
-            "12",
-            "34",
-            "45",
-            "67",
-            "89",
-            "0",
-            "-"
+            "У Вас была какая-либо СЫПЬ?",
+            "Были ли у Вас ПРОЛЕЖНИ?",
+            "Насколько Сил был ОЖОГ КОЖИ ПОСЛЕ ОБЛУЧЕНИЯ?",
+            "Вы замечали ПОКАЛЫВАНИЕВ КИСТЯХ ИЛИ СТОПАХ?",
+            "Насколько ВЫРАЖЕННОЙ была БОЛЬ В СУСТАВАХ?",
+            "Насколько ВЫРАЖЕННОЙ была УТОМЛЯЕМОСТЬ?",
+            "Насколько ВЫРАЖЕННЫМ было СНИЖЕНИЕ ЛИБИДО",
+            "Насколько ВЫРАЖЕННЫМИ были ДРОЖЬ ИЛИ ОЗНОБ?",
+            "Насколько ВЫРАЖЕННОЙ была СУХОСТЬ ВО РТУ?",
+            "Насколько ВЫРАЖЕННЫМИ были ТРУДНОСТИ ПРИ ГЛОТАНИИ?",
+            "Насколько ВЫРАЖЕННЫМИ были ЯЗВЫ НА СЛИЗИСТОЙ РТА?",
+            "Насколько ВЫРАЖЕННЫМ было ВЗДУТИЕ ЖИВОТА?",
+            "Насколько ВЫРАЖЕННОЙ была САМАЯ СИЛЬНАЯ ИКОТА?"
         )
 
         val shuffledValues = questions.shuffled()
