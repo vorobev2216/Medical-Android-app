@@ -31,7 +31,9 @@ import java.util.concurrent.TimeUnit
 
 class TaskFragment : Fragment(), DrugItemClickListener {
     private lateinit var binding: FragmentTaskBinding
-    private val viewModel: DataViewModel by activityViewModels()
+    private val viewModel: DataViewModel by activityViewModels{
+        DrugItemModelFactory((requireActivity().application as SecureApplication).repository)
+    }
     private val sharedPrefs by lazy {
         requireActivity().getSharedPreferences("button", AppCompatActivity.MODE_PRIVATE)
     }

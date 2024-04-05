@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel: DataViewModel by viewModels()
+    private val viewModel: DataViewModel by viewModels{DrugItemModelFactory((application as SecureApplication).repository)}
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

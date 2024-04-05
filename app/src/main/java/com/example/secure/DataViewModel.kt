@@ -3,11 +3,15 @@ package com.example.secure
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalTime
 import java.util.UUID
 
-class DataViewModel() : ViewModel() {
+class DataViewModel(private val repository: DrudItemRepository) : ViewModel() {
     /////////// Google stats
     private val _userName = MutableLiveData<String>()
     val userName: LiveData<String> get() = _userName
@@ -49,35 +53,23 @@ class DataViewModel() : ViewModel() {
         _drugName.value = drugName
     }
 
-    var drugItems = MutableLiveData<MutableList<DrugItem>?>()
+    var drugItems: LiveData<List<DrugItem>> = repository!!.allDrugItems.asLiveData()
 
-    init {
-        drugItems.value = mutableListOf()
+    fun addDrugItem(newDrug: DrugItem) = viewModelScope.launch {
+        repository?.insertDrugItem(newDrug)
     }
 
-    fun addDrugItem(newDrug: DrugItem) {
-        val list = drugItems.value
-        list!!.add(newDrug)
-        drugItems.postValue(list)
+    fun updateDrugItem(drugItem: DrugItem) = viewModelScope.launch {
+        repository?.updateDrugItem(drugItem)
     }
 
-    fun updateDrugItem(id: UUID, name: String, desc: String, dueTime: LocalTime?) {
-        val list = drugItems.value
-        var drug = list!!.find { it.id == id }!!
-        drug.name = name
-        drug.desc = desc
-        drug.dueTime = dueTime
-        drugItems.postValue(list)
-    }
-
-    fun setCompleted(drugItem: DrugItem) {
-        val list = drugItems.value
-        var drug = list!!.find { it.id == drugItem.id }!!
-        if (drug.completedDate == null) {
-            drug.completedDate = LocalDate.now()
+    fun setCompleted(drugItem: DrugItem) = viewModelScope.launch {
+        if(!drugItem.isCompleted()){
+            drugItem.completedDateString = DrugItem.dateFormatter.format(LocalDate.now())
         }
-        drugItems.postValue(list)
+        repository?.updateDrugItem(drugItem)
     }
+
 
     /////////// Drug Data
 
@@ -95,4 +87,16 @@ class DataViewModel() : ViewModel() {
     /////////// Health Rating Data
 
 
+}
+
+class DrugItemModelFactory(private val repository: DrudItemRepository) : ViewModelProvider.Factory
+{
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T
+    {
+        if (modelClass.isAssignableFrom(DataViewModel::class.java))
+            return DataViewModel(repository) as T
+
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

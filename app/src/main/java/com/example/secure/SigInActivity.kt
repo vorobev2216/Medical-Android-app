@@ -26,7 +26,7 @@ import androidx.fragment.app.activityViewModels
 
 class SigInActivity : AppCompatActivity(){
     private lateinit var auth: FirebaseAuth
-    private val viewModel: DataViewModel by viewModels()
+    private val viewModel: DataViewModel by viewModels { DrugItemModelFactory((application as SecureApplication).repository)}
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var binding: ActivitySigInBinding
 

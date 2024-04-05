@@ -61,8 +61,8 @@ class DrugItemViewHolder(
             clickListener.editDrugItem(drugItem)
         }
 
-        if (drugItem.dueTime != null) {
-            binding.duetime.text = timeFormat.format(drugItem.dueTime)
+        if (drugItem.dueTime() != null) {
+            binding.duetime.text = timeFormat.format(drugItem.dueTime())
         } else {
             binding.duetime.text = ""
         }

@@ -41,8 +41,8 @@ class AddDrugFragment(var drugItem: DrugItem?) : BottomSheetDialogFragment() {
             var editable = Editable.Factory.getInstance()
             binding.edDrugName.text = editable.newEditable(drugItem!!.name)
             binding.edDrugDesc.text = editable.newEditable(drugItem!!.desc)
-            if(drugItem!!.dueTime == null){
-                dueTime = drugItem!!.dueTime!!
+            if(drugItem!!.dueTime() == null){
+                dueTime = drugItem!!.dueTime()!!
                 updateButtonText()
             }
         }
@@ -50,11 +50,15 @@ class AddDrugFragment(var drugItem: DrugItem?) : BottomSheetDialogFragment() {
         binding.addButton.setOnClickListener {
             val drugName = binding.edDrugName.text.toString()
             val drugDesc = binding.edDrugDesc.text.toString()
+            val dueTimeString = if(dueTime == null) null else DrugItem.timeFormatter.format(dueTime)
             if (drugItem == null) {
-                val newDrug = DrugItem(drugName, drugDesc, dueTime, null)
+                val newDrug = DrugItem(drugName, drugDesc, dueTimeString, null)
                 viewModel.addDrugItem(newDrug)
             } else {
-                viewModel.updateDrugItem(drugItem!!.id, drugName, drugDesc, dueTime)
+                drugItem!!.name = drugName
+                drugItem!!.desc = drugDesc
+                drugItem!!.dueTimeString = dueTimeString
+                viewModel.updateDrugItem(drugItem!!)
             }
             binding.edDrugName.setText("")
             binding.edDrugDesc.setText("")
