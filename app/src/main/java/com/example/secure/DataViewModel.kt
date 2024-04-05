@@ -83,11 +83,13 @@ class DataViewModel() : ViewModel() {
 
     /////////// Health Rating Data
 
-    private val _ratingHealth = MutableLiveData<Int>()
-    val ratingHealth: LiveData<Int> get() = _ratingHealth
-
+    private val _ratingHealth = MutableLiveData<MutableList<Int>>(mutableListOf())
+    val ratingHealth: LiveData<MutableList<Int>> get() = _ratingHealth
     fun setRating(rating: Int){
-        _ratingHealth.value = rating
+        _ratingHealth.value?.apply {
+            add(rating)
+            _ratingHealth.value = this
+        }
     }
 
     /////////// Health Rating Data

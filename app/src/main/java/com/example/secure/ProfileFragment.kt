@@ -56,7 +56,12 @@ class ProfileFragment : Fragment() {
 
 
 
-
+        if(viewModel.ratingHealth.value == null){
+            binding.pbStatus.progress = 0
+        } else {
+            Log.d("RRR",viewModel.ratingHealth.value.toString())
+            binding.pbStatus.progress = 40
+        }
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()

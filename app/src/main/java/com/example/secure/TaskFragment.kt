@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
@@ -101,17 +102,18 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 //            binding.taskButton.isEnabled = true
 //            binding.tvQuestions.text = "Пройдите ежедневный опрос"
 //        }
-        binding.btnSimphtome.setOnClickListener{
-            parentFragmentManager.commit {
-                replace(R.id.TaskFrame, QuestionsFragment())
-                addToBackStack(null)
-            }
-        }
+//        binding.btnSimphtome.setOnClickListener{
+//            parentFragmentManager.commit {
+//                replace(R.id.TaskFrame, QuestionsFragment())
+//                addToBackStack(null)
+//            }
+//        }
 
         binding.taskButton.setOnClickListener {
             parentFragmentManager.commit {
                 replace(R.id.TaskFrame, QuestionsFragment())
                 addToBackStack(null)
+
             }
 
 //            it.isEnabled = false
@@ -144,6 +146,21 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 
         }
 
+        if(viewModel.ratingHealth.value == null){
+            binding.progressCircular.isVisible = false
+        } else{
+            var progress = 0
+            viewModel.ratingHealth.value?.let { el ->
+                if(el.isNotEmpty()){
+                    progress = el.last()
+                    updateProgress(progress)
+                    binding.rating1.text = progress.toString()
+                }
+            }
+            updateProgress(progress)
+        }
+
+
 
     }
 
@@ -161,6 +178,11 @@ class TaskFragment : Fragment(), DrugItemClickListener {
                 PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         }
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,midnight,alarmIntent)
+    }
+
+    private fun updateProgress(progress: Int) {
+        val progressBar = binding.progressCircular
+        progressBar.progress = progress
     }
 
     private fun getNextDay(): Calendar {

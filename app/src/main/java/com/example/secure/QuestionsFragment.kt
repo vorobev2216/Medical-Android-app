@@ -24,6 +24,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.example.secure.databinding.DialogCallambulanceBinding
 import com.example.secure.databinding.FragmentQuestionsBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class QuestionsFragment : Fragment() {
@@ -33,6 +34,7 @@ class QuestionsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -50,11 +52,23 @@ class QuestionsFragment : Fragment() {
         binding.endBtn.setOnClickListener {
             if (checkQuiz()) {
                 calculateRating()
-                if (viewModel.ratingHealth.value!! < 50) {
+                var lastEl = 0
+                viewModel.ratingHealth.value?.let { list ->
+                    if (list.isNotEmpty()) {
+                        lastEl = list.last()
+                    }else{
+
+                    }
+                }
+                if (lastEl < 50) {
                     createPhoneDialog()
 
-                } else{
-                    Toast.makeText(context,"Спасибо за ответ! Увидимся завтра!",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        context,
+                        "Спасибо за ответ! Увидимся завтра!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     parentFragmentManager.commit {
                         replace(R.id.QuestionsFrame, TaskFragment())
                     }
@@ -129,7 +143,25 @@ class QuestionsFragment : Fragment() {
         )
         for (rg in radioGroup) {
             if (rg.checkedRadioButtonId == -1) {
-                Toast.makeText(context, "Ответьте на все вопросы!", Toast.LENGTH_SHORT).show()
+                val snackbar = Snackbar.make(requireView(), "", Snackbar.LENGTH_LONG)
+                val layout = snackbar.view as Snackbar.SnackbarLayout
+
+                val snackView = layoutInflater.inflate(R.layout.custom_snackbar, null)
+
+                layout.setPadding(0, 0, 0, 0)
+                layout.addView(snackView, 0)
+
+
+                val snackbarText = snackView.findViewById<TextView>(R.id.snackbar_text)
+
+                layout.background =
+                    ContextCompat.getDrawable(context!!, R.drawable.background_white)
+
+
+                snackbarText.text = "Ответьте на все вопросы!"
+
+                snackbar.show()
+
                 return false
             }
         }
