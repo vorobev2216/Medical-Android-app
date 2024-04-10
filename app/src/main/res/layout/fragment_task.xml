@@ -13,7 +13,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="800dp"
         android:contentDescription="Task"
         android:fillViewport="true">
 
@@ -71,7 +71,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="330sp"
-                android:layout_height="356sp"
+                android:layout_height="340sp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/background_white"
                 app:cardCornerRadius="20dp"
@@ -82,14 +82,14 @@
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginStart="16sp"
                     android:layout_marginTop="16sp"
                     android:layout_marginEnd="110sp"
                     android:layout_marginBottom="310sp"
                     android:text="Принять сегодня"
                     android:textColor="@color/main_blue"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_drug"
@@ -214,12 +214,59 @@
                     android:layout_gravity="center_vertical"
                     app:indicatorSize="75dp"
                     app:trackColor="#F8F8FE"
+                    android:layout_marginStart="15dp"
                     app:trackThickness="7dp"/>
 
                 <TextView
                     android:id="@+id/rating1"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="23dp"
+                    android:layout_marginStart="38dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textSize="20dp"
+                    android:paddingLeft="6dp"
+                    android:textColor="@color/main_blue"
+                    android:text="" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progress_circular2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="125dp"
+                    app:indicatorColor="@color/main_blue"
+                    app:indicatorSize="75dp"
+                    app:trackColor="#F8F8FE"
+                    app:trackThickness="7dp" />
+
+                <TextView
+                    android:id="@+id/rating2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/metropolissemibold"
+                    android:textSize="20dp"
+                    android:paddingLeft="6dp"
+                    android:textColor="@color/main_blue"
+                    android:text="" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progress_circular3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="235dp"
+                    app:indicatorColor="@color/main_blue"
+                    app:indicatorSize="75dp"
+                    app:trackColor="#F8F8FE"
+                    app:trackThickness="7dp" />
+
+                <TextView
+                    android:id="@+id/rating3"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="258dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/metropolissemibold"
@@ -228,6 +275,7 @@
                     android:textColor="@color/main_blue"
                     android:text="" />
             </androidx.cardview.widget.CardView>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

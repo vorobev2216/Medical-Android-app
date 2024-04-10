@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +21,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Query
 import com.bumptech.glide.Glide
 import com.example.secure.databinding.FragmentTaskBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
@@ -31,7 +35,8 @@ import java.util.concurrent.TimeUnit
 
 class TaskFragment : Fragment(), DrugItemClickListener {
     private lateinit var binding: FragmentTaskBinding
-    private val viewModel: DataViewModel by activityViewModels{
+
+    private val viewModel: DataViewModel by activityViewModels {
         DrugItemModelFactory((requireActivity().application as SecureApplication).repository)
     }
     private val sharedPrefs by lazy {
@@ -45,6 +50,35 @@ class TaskFragment : Fragment(), DrugItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val db = Firebase.firestore
+//        db.collection("Rating")
+//            .document("QuizResult")
+//            .get()
+//            .addOnSuccessListener { document ->
+//                if(document != null){
+//                    Log.d("RRR","${document.data.}")
+//                } else {
+//                    Log.d("RRR","bb")
+//                }
+//            }
+//        val array = ArrayList<HashMap<String, Any>>() // или ArrayList<Any>()
+//
+//        db.collection("Rating")
+//            .get()
+//            .addOnSuccessListener { result ->
+//                for (document in result) {
+//                    Log.d("RRR", "${document.id} => ${document.data}")
+//                    val data = document.data as HashMap<String, Any>
+//                    array.add(data)
+//                    val value = data["rating"]
+//                    Log.d("RRR","$value")
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.d("RRR", "Error getting documents: ", exception)
+//            }
+
+
 
 
         binding = FragmentTaskBinding.inflate(inflater, container, false)
@@ -144,16 +178,14 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 //            }.start()
 
 
-
-
         }
 
-        if(viewModel.ratingHealth.value == null){
+        if (viewModel.ratingHealth.value == null) {
             binding.progressCircular.isVisible = false
-        } else{
+        } else {
             var progress = 0
             viewModel.ratingHealth.value?.let { el ->
-                if(el.isNotEmpty()){
+                if (el.isNotEmpty()) {
                     progress = el.last()
                     updateProgress(progress)
                     binding.rating1.text = progress.toString()
@@ -161,6 +193,44 @@ class TaskFragment : Fragment(), DrugItemClickListener {
             }
             updateProgress(progress)
         }
+
+        val db = Firebase.firestore
+        val timestamp = com.google.firebase.Timestamp.now()
+        val array = ArrayList<HashMap<String, Any>>() // или ArrayList<Any>()
+
+
+
+        db.collection("Rating")
+            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .limit(3)
+            .get()
+            .addOnSuccessListener { result ->
+                var data: HashMap<String, Any>? = null
+                for (document in result) {
+                    //Log.d("RRR", "${document.id} => ${document.data}")
+                    data = document.data as HashMap<String, Any>
+                    array.add(data)
+
+
+                    //Log.d("RRR","$value1")
+                    Log.d("RRR"," Array:${array.size}")
+                }
+                val value1 = data?.get("val")
+                binding.progressCircular.progress = (value1 as Long).toInt()
+                binding.rating1.text = (value1).toString()
+
+                val value2 = array[0]["val"]
+                binding.rating2.text = value2.toString()
+                binding.progressCircular2.progress = (value2 as Long).toInt()
+
+                val value3 = array[1]["val"]
+                binding.rating3.text = value3.toString()
+                binding.progressCircular3.progress = (value3 as Long).toInt()
+            }
+            .addOnFailureListener { exception ->
+                //Log.d("RRR", "Error getting documents: ", exception)
+            }
+
 
 
 
@@ -171,15 +241,14 @@ class TaskFragment : Fragment(), DrugItemClickListener {
         val midnight = nextDay.timeInMillis
 
 
-
-
         val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val alarmIntent = Intent(requireActivity(),MidnightReceiver::class.java).let {
-            intent ->
-            PendingIntent.getBroadcast(requireActivity(),0,intent,
-                PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        val alarmIntent = Intent(requireActivity(), MidnightReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(
+                requireActivity(), 0, intent,
+                PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
         }
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,midnight,alarmIntent)
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, midnight, alarmIntent)
     }
 
     private fun updateProgress(progress: Int) {

@@ -53,21 +53,21 @@ class DataViewModel(private val repository: DrudItemRepository) : ViewModel() {
         _drugName.value = drugName
     }
 
-    var drugItems: LiveData<List<DrugItem>> = repository!!.allDrugItems.asLiveData()
+    var drugItems: LiveData<List<DrugItem>> = repository.allDrugItems.asLiveData()
 
     fun addDrugItem(newDrug: DrugItem) = viewModelScope.launch {
-        repository?.insertDrugItem(newDrug)
+        repository.insertDrugItem(newDrug)
     }
 
     fun updateDrugItem(drugItem: DrugItem) = viewModelScope.launch {
-        repository?.updateDrugItem(drugItem)
+        repository.updateDrugItem(drugItem)
     }
 
     fun setCompleted(drugItem: DrugItem) = viewModelScope.launch {
         if(!drugItem.isCompleted()){
             drugItem.completedDateString = DrugItem.dateFormatter.format(LocalDate.now())
         }
-        repository?.updateDrugItem(drugItem)
+        repository.updateDrugItem(drugItem)
     }
 
 
