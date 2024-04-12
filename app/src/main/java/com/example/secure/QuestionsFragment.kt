@@ -25,6 +25,8 @@ import androidx.fragment.app.commit
 import com.example.secure.databinding.DialogCallambulanceBinding
 import com.example.secure.databinding.FragmentQuestionsBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class QuestionsFragment : Fragment() {
@@ -49,32 +51,33 @@ class QuestionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fillQuestions()
+        val db = Firebase.firestore
         binding.endBtn.setOnClickListener {
             if (checkQuiz()) {
                 calculateRating()
                 var lastEl = 0
+                val timestamp = com.google.firebase.Timestamp.now()
                 viewModel.ratingHealth.value?.let { list ->
                     if (list.isNotEmpty()) {
                         lastEl = list.last()
-                    }else{
-
                     }
                 }
+                var value = hashMapOf("val" to lastEl,
+                    "timestamp" to timestamp )
+                db.collection("Rating").add(value)
                 if (lastEl < 50) {
                     createPhoneDialog()
-
-                } else {
-                    Toast.makeText(
-                        context,
-                        "Спасибо за ответ! Увидимся завтра!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    parentFragmentManager.commit {
-                        replace(R.id.QuestionsFrame, TaskFragment())
-                    }
-
-
+                    db.collection("Rating").add(value)
                 }
+                Toast.makeText(
+                    context,
+                    "Спасибо за ответ! Увидимся завтра!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                parentFragmentManager.commit {
+                    replace(R.id.QuestionsFrame, TaskFragment())
+                }
+
 
             }
         }

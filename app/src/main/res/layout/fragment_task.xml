@@ -71,7 +71,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="330sp"
-                android:layout_height="340sp"
+                android:layout_height="330sp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/background_white"
                 app:cardCornerRadius="20dp"
@@ -178,7 +178,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="333dp"
-                android:layout_height="97dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -206,12 +206,13 @@
 <!--                    android:background="@drawable/rounded_bg_iv"-->
 <!--                    android:src="@drawable/add_24"-->
 <!--                    app:tint="@color/main_blue" />-->
+
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/progress_circular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:indicatorColor="@color/main_blue"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
                     app:indicatorSize="75dp"
                     app:trackColor="#F8F8FE"
                     android:layout_marginStart="15dp"
@@ -219,7 +220,7 @@
 
                 <TextView
                     android:id="@+id/rating1"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="38dp"
                     android:layout_marginStart="38dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,7 +234,7 @@
                     android:id="@+id/progress_circular2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="125dp"
                     app:indicatorColor="@color/main_blue"
                     app:indicatorSize="75dp"
@@ -242,7 +243,7 @@
 
                 <TextView
                     android:id="@+id/rating2"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="38dp"
                     android:layout_marginStart="150dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -256,7 +257,7 @@
                     android:id="@+id/progress_circular3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="235dp"
                     app:indicatorColor="@color/main_blue"
                     app:indicatorSize="75dp"
@@ -265,7 +266,7 @@
 
                 <TextView
                     android:id="@+id/rating3"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="38dp"
                     android:layout_marginStart="258dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -274,6 +275,36 @@
                     android:paddingLeft="6dp"
                     android:textColor="@color/main_blue"
                     android:text="" />
+
+                <TextView
+                    android:id="@+id/tv_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:layout_marginStart="25dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/main_blue"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginStart="136dp"
+                    android:textColor="@color/main_blue"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:layout_marginStart="246dp"
+                    android:textColor="@color/main_blue"
+                    android:paddingLeft="10dp"
+                    android:text="TextView" />
             </androidx.cardview.widget.CardView>
 
 

@@ -26,9 +26,11 @@ import com.bumptech.glide.Glide
 import com.example.secure.databinding.FragmentTaskBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -207,25 +209,40 @@ class TaskFragment : Fragment(), DrugItemClickListener {
             .addOnSuccessListener { result ->
                 var data: HashMap<String, Any>? = null
                 for (document in result) {
-                    //Log.d("RRR", "${document.id} => ${document.data}")
                     data = document.data as HashMap<String, Any>
                     array.add(data)
-
-
-                    //Log.d("RRR","$value1")
-                    Log.d("RRR"," Array:${array.size}")
                 }
-                val value1 = data?.get("val")
+                db.collection("Rating")
+                val value1 = array[2]["val"]
                 binding.progressCircular.progress = (value1 as Long).toInt()
                 binding.rating1.text = (value1).toString()
 
-                val value2 = array[0]["val"]
+                val value2 = array[1]["val"]
                 binding.rating2.text = value2.toString()
                 binding.progressCircular2.progress = (value2 as Long).toInt()
 
-                val value3 = array[1]["val"]
+                val value3 = array[0]["val"]
+                Log.d("RRR","$value3")
                 binding.rating3.text = value3.toString()
                 binding.progressCircular3.progress = (value3 as Long).toInt()
+
+
+                val timestamp3 = array[2]["timestamp"] as com.google.firebase.Timestamp
+                val timestamp2 = array[1]["timestamp"] as com.google.firebase.Timestamp
+                val timestamp1 = array[0]["timestamp"] as com.google.firebase.Timestamp
+
+                val date1 = timestamp1.toDate()
+                val date2 = timestamp2.toDate()
+                val date3 = timestamp3.toDate()
+
+                val sdf = SimpleDateFormat("d MMM", Locale("ru"))
+
+                val formattedDate1 = sdf.format(date1)
+                val formattedDate2 = sdf.format(date2)
+                val formattedDate3 = sdf.format(date3)
+                binding.tvTime1.text = formattedDate3
+                binding.tvTime2.text = formattedDate2
+                binding.tvTime3.text = formattedDate1
             }
             .addOnFailureListener { exception ->
                 //Log.d("RRR", "Error getting documents: ", exception)
@@ -234,8 +251,11 @@ class TaskFragment : Fragment(), DrugItemClickListener {
 
 
 
-    }
 
+    }
+    private fun convertMillisToTime(){
+
+    }
     private fun setMidnightAlarm() {
         val nextDay = getNextDay()
         val midnight = nextDay.timeInMillis
