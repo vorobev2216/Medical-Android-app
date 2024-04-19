@@ -52,37 +52,6 @@ class TaskFragment : Fragment(), DrugItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val db = Firebase.firestore
-//        db.collection("Rating")
-//            .document("QuizResult")
-//            .get()
-//            .addOnSuccessListener { document ->
-//                if(document != null){
-//                    Log.d("RRR","${document.data.}")
-//                } else {
-//                    Log.d("RRR","bb")
-//                }
-//            }
-//        val array = ArrayList<HashMap<String, Any>>() // или ArrayList<Any>()
-//
-//        db.collection("Rating")
-//            .get()
-//            .addOnSuccessListener { result ->
-//                for (document in result) {
-//                    Log.d("RRR", "${document.id} => ${document.data}")
-//                    val data = document.data as HashMap<String, Any>
-//                    array.add(data)
-//                    val value = data["rating"]
-//                    Log.d("RRR","$value")
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.d("RRR", "Error getting documents: ", exception)
-//            }
-
-
-
-
         binding = FragmentTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -244,9 +213,7 @@ class TaskFragment : Fragment(), DrugItemClickListener {
                 binding.tvTime2.text = formattedDate2
                 binding.tvTime3.text = formattedDate1
             }
-            .addOnFailureListener { exception ->
-                //Log.d("RRR", "Error getting documents: ", exception)
-            }
+
 
 
 
