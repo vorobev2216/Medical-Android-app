@@ -1,5 +1,5 @@
 {
-  "modelUri": "gpt://b1ge0d6kl2g1ugnc2fo6/yandexgpt-lite",
+  "modelUri": "gpt://b1ge0d6kl2g1ugnc2fo6/yandexgpt/latest",
   "completionOptions": {
     "stream": false,
     "temperature": 0.6,
@@ -13,14 +13,6 @@
     {
       "role": "user",
       "text": "Привет! Как дела?"
-    },
-    {
-      "role": "assistant",
-      "text": "Привет! По каким предметам?"
-    },
-    {
-      "role": "user",
-      "text": "Математике и физике"
     }
   ]
 }

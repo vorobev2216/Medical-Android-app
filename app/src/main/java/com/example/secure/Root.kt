@@ -1,10 +1,5 @@
 package com.example.secure
 
-import android.os.Message
-import com.google.android.gms.common.api.Result
-import com.google.android.gms.common.api.Status
-import com.google.api.Usage
-
 data class Result(
     val alternatives: List<Alternative>,
     val usage: com.example.secure.Usage,
