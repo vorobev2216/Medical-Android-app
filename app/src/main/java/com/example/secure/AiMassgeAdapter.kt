@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -17,10 +19,21 @@ data class AiMessage(
 class ChatViewHolder(item: View): RecyclerView.ViewHolder(item){
 
     private val messageTextView = item.findViewById<TextView>(R.id.chat_tv)
+    private val constraintLayout = item.findViewById<ConstraintLayout>(R.id.constraint)
+
 
     fun bind(message: AiMessage) {
-        messageTextView.gravity = if(message.isUserMessage) Gravity.END else Gravity.START
-        messageTextView.text = message.text
+        messageTextView.apply {
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(constraintLayout)
+
+            val bias = if (message.isUserMessage) 1f else 0f
+            constraintSet.setHorizontalBias(id, bias)
+
+            constraintSet.applyTo(constraintLayout)
+
+            text = message.text
+        }
     }
 
 
