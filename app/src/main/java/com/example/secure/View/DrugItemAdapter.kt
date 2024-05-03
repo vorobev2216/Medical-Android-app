@@ -1,9 +1,10 @@
-package com.example.secure
+package com.example.secure.View
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.secure.DrugItem
+import com.example.secure.DrugItemClickListener
 import com.example.secure.databinding.RvDrugCardBinding
 
 class DrugItemAdapter(

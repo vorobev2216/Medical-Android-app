@@ -1,4 +1,4 @@
-package com.example.secure
+package com.example.secure.Fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -6,17 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.secure.View.AiChatAdapter
+import com.example.secure.View.AiMessage
+import com.example.secure.Retrofit.ApiService
+import com.example.secure.ViewModel.DataViewModel
+import com.example.secure.ViewModel.DrugItemModelFactory
+import com.example.secure.Retrofit.Root
+import com.example.secure.Room.SecureApplication
 import com.example.secure.databinding.FragmentAiChatBinding
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
@@ -49,6 +52,9 @@ class AiChatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
         binding.rcChat.adapter = adapter
         binding.rcChat.layoutManager = LinearLayoutManager(requireContext())
         binding.rcChat.isNestedScrollingEnabled = false

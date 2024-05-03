@@ -1,4 +1,4 @@
-package com.example.secure
+package com.example.secure.ViewModel
 
 import androidx.lifecycle.ViewModel
 

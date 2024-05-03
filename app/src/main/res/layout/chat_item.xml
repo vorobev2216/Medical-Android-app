@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/chat_ui"
         android:padding="10dp"
+        android:layout_margin="10dp"
         android:text="Hello"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

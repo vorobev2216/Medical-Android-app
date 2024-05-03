@@ -1,11 +1,9 @@
-package com.example.secure
+package com.example.secure.Fragments
 
 import android.app.AlarmManager
-import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -14,15 +12,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Query
 import com.bumptech.glide.Glide
+import com.example.secure.ViewModel.DataViewModel
+import com.example.secure.DrugItem
+import com.example.secure.View.DrugItemAdapter
+import com.example.secure.DrugItemClickListener
+import com.example.secure.ViewModel.DrugItemModelFactory
+import com.example.secure.MidnightReceiver
+import com.example.secure.R
+import com.example.secure.Room.SecureApplication
 import com.example.secure.databinding.FragmentTaskBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -30,9 +34,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
-import java.util.concurrent.TimeUnit
 
 
 class TaskFragment : Fragment(), DrugItemClickListener {
@@ -76,7 +78,7 @@ class TaskFragment : Fragment(), DrugItemClickListener {
             binding.tvTaskFragName.text = name
         })
         Glide.with(this).load(viewModel.userPhoto.value).into(binding.imageView)
-            .onLoadFailed(com.example.secure.R.drawable.img.toDrawable())
+            .onLoadFailed(R.drawable.img.toDrawable())
 
         setRecyclerView()
 

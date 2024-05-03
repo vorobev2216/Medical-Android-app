@@ -3,18 +3,21 @@ package com.example.secure
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import com.example.secure.Fragments.AiChatFragment
+import com.example.secure.Fragments.ProfileFragment
+import com.example.secure.Fragments.TaskFragment
+import com.example.secure.Room.SecureApplication
+import com.example.secure.ViewModel.DataViewModel
+import com.example.secure.ViewModel.DrugItemModelFactory
 import com.example.secure.databinding.ActivityMainBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel: DataViewModel by viewModels{DrugItemModelFactory((application as SecureApplication).repository)}
+    private val viewModel: DataViewModel by viewModels{ DrugItemModelFactory((application as SecureApplication).repository) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

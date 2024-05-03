@@ -1,6 +1,5 @@
 package com.example.secure
 
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +8,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import com.example.secure.databinding.ActivityMainBinding
 import com.example.secure.databinding.ActivitySigInBinding
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,12 +17,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import androidx.fragment.app.activityViewModels
+import com.example.secure.Room.SecureApplication
+import com.example.secure.ViewModel.DataViewModel
+import com.example.secure.ViewModel.DrugItemModelFactory
 
 
 class SigInActivity : AppCompatActivity(){
     private lateinit var auth: FirebaseAuth
-    private val viewModel: DataViewModel by viewModels { DrugItemModelFactory((application as SecureApplication).repository)}
+    private val viewModel: DataViewModel by viewModels { DrugItemModelFactory((application as SecureApplication).repository) }
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var binding: ActivitySigInBinding
 

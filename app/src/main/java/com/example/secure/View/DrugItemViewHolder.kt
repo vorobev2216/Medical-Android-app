@@ -1,13 +1,13 @@
-package com.example.secure
+package com.example.secure.View
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.secure.DrugItem
+import com.example.secure.DrugItemClickListener
+import com.example.secure.R
 import com.example.secure.databinding.RvDrugCardBinding
-import com.google.android.material.timepicker.TimeFormat
 import java.time.format.DateTimeFormatter
 
 class DrugItemViewHolder(

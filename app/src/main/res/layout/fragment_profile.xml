@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_white"
-    tools:context=".ProfileFragment">
+    tools:context=".Fragments.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -174,15 +174,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ProgressBar
-                    android:id="@+id/pb_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:progress="0"
-                    />
-            </LinearLayout>
+                android:orientation="horizontal"/>
         </ScrollView>
 
 
@@ -222,10 +214,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
 
-            android:layout_marginTop="290dp"
+            android:layout_marginTop="250dp"
             android:background="@drawable/custom_logout_btn"
             android:fontFamily="@font/metropolissemibold"
-            android:text="@string/log_out"
+            android:text="Выйти"
             android:textColor="@color/white" />
 
 

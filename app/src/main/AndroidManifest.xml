@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-android:name=".SecureApplication"
+android:name=".Room.SecureApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -43,7 +43,9 @@ android:name=".SecureApplication"
 
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true"
+
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

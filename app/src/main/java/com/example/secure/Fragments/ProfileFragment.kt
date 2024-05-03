@@ -1,6 +1,5 @@
-package com.example.secure
+package com.example.secure.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
-import com.bumptech.glide.R
+import com.example.secure.ViewModel.DataViewModel
 import com.example.secure.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -56,12 +52,7 @@ class ProfileFragment : Fragment() {
 
 
 
-        if(viewModel.ratingHealth.value == null){
-            binding.pbStatus.progress = 0
-        } else {
-            Log.d("RRR",viewModel.ratingHealth.value.toString())
-            binding.pbStatus.progress = 40
-        }
+
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()

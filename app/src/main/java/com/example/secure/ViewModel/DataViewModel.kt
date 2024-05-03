@@ -1,4 +1,4 @@
-package com.example.secure
+package com.example.secure.ViewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.secure.DrugItem
+import com.example.secure.Room.DrudItemRepository
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.LocalTime
-import java.util.UUID
 
 class DataViewModel(private val repository: DrudItemRepository) : ViewModel() {
     /////////// Google stats

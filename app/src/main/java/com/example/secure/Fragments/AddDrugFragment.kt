@@ -1,4 +1,4 @@
-package com.example.secure
+package com.example.secure.Fragments
 
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.secure.ViewModel.DataViewModel
+import com.example.secure.DrugItem
 import com.example.secure.databinding.FragmentAddDrugBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.LocalTime

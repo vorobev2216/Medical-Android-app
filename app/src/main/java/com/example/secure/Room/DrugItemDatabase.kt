@@ -1,9 +1,10 @@
-package com.example.secure
+package com.example.secure.Room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.secure.DrugItem
 
 @Database(entities = [DrugItem::class], version = 1, exportSchema = false)
 abstract class DrugItemDatabase : RoomDatabase() {
